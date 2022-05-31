@@ -35,7 +35,6 @@ class Controller_Chat extends Controller
                             <input type="submit" name="cancel" value="Отменить"> <!-- кнопка -->
                         </form>
                     </div>';
-//            <input type="submit" name="del" value="Удалить"><!-- кнопка -->
         }
         //список всех участников
         $this->pageData['array_party'] = $this->model->get_party($chat_id);
@@ -55,8 +54,6 @@ class Controller_Chat extends Controller
                 $this->pageData['array_party'] = $this->model->get_party($chat_id);
             }
         }
-        //для админа удаление пользователя
-//        if (isset($_POST['search']) && isset($_POST['del'])) {}
         $this->view->generate("chat_view.php", "template_view.php", $this->pageData);
     }
 
