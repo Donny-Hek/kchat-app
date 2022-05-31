@@ -57,11 +57,9 @@
                 },
                 success: function (data) {
                     $('#chat_load').html(data);
-                    // $("#chat_load").scrollTop($("#chat_load")[0].scrollHeight);
                 }
             });
         }, 200);
-        // $("#chat_load").scrollTop($("#chat_load")[0].scrollHeight);
     }
 
     function chat_validation() {
@@ -76,6 +74,5 @@
                 $('#message').val("");
             }
         });
-        // $("#chat_load").scrollTop($("#chat_load")[0].scrollHeight);
     }
 </script>
