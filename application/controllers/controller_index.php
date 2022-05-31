@@ -26,7 +26,6 @@ class Controller_Index extends Controller
         $password = htmlspecialchars(trim($_POST['auth_password']));
         if (!$this->model->login_user($login, $password)) {
             $this->pageData['error2'] = "Введите верно логин и пароль";
-//            echo ("Введите верно логин и пароль");
             return false;
         }
     }
@@ -39,7 +38,6 @@ class Controller_Index extends Controller
         if (strlen($password) < 5) {
             $this->pageData['error1'] = "Длина пароля не может быть меньше 
             5 символов. Попробуйте еще раз";
-//            echo ("Длина пароля не может быть меньше 5 символов. Попробуйте еще раз");
             return false;
         }
         if (!$this->model->register_user($login, $password)) {
