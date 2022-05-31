@@ -61,14 +61,9 @@ class Model_Chat extends Model
         if ($user_id == null) return false;
         else {
             $user_id = $user_id['id'];
-            //налаживаем связь в чате
-//            $query="select * from `party` where `person_id`='$user_id' and `chat_id`='$chat_id'";
-//            if (mysqli_query($this->link, $query)) return false;
-//            else {
-                $insert = "insert into `party` (`chat_id`,`person_id`) values ('$chat_id','$user_id')";
-                if (mysqli_query($this->link, $insert)) return true;
-                else return false;
-//            }
+            $insert = "insert into `party` (`chat_id`,`person_id`) values ('$chat_id','$user_id')";
+            if (mysqli_query($this->link, $insert)) return true;
+            else return false;
         }
     }
 }
