@@ -11,7 +11,6 @@ class Model_Index extends Model
         if (empty($data['login']) || $password != $data['password']) {
             return false;
         }
-//        session_start();
         $_SESSION['login'] = $data['login'];
         $_SESSION['id'] = $data['id'];
         header("location: ".$_SERVER['REQUEST_URI']."./home");
@@ -24,7 +23,6 @@ class Model_Index extends Model
         $res = mysqli_query($this->link, $query);
         $data = mysqli_fetch_array($res);
         if (!empty($data['login'])) {
-//            echo ("Такой логин уже существует");
             return false;
         }
         $query = "INSERT INTO `person` (`login`,`password`) VALUES('$login','$password') ";
