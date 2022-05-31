@@ -21,7 +21,6 @@ class Model_Home extends Model
         $about_chat = mysqli_query($this->link, $query);
         if ($about_chat && (mysqli_num_rows($about_chat)) > 0) {
             while ($row = mysqli_fetch_assoc($about_chat)) {
-//                $pageData[$row["name_chat"]] = $_SERVER['REQUEST_URI'] . '/chat?chat_id=' . $row["chat_id"];
                 $pageData[$row["name_chat"]] = 'http://localhost/kchat/home/chat?chat_id=' . $row["chat_id"];
             }
         } else {
@@ -35,16 +34,6 @@ class Model_Home extends Model
         $data = $_SESSION['id'];
         //добавляем новый чат
         $insert = "insert into `chat` (`name_chat`,`id_admin`) values ('$name_chat','$data')";
-//        $result = mysqli_query($this->link, $insert);
-        //получаем id нового чата
-//        $query = "select `id` from `chat` where `name_chat`='$name_chat' and `id_admin`='$data'";
-//        $chat_id = mysqli_query($this->link, $query);
-//        $res = mysqli_fetch_assoc($chat_id);
-//        $id = $res['id'];
-        //налаживаем связь в чате
-//        $insert = "insert into `party` (`chat_id`,`person_id`) values ('$id','$data')";
-//        $result2 = mysqli_query($this->link, $insert);
-
         //  добавляем новый чат                && налаживаем связь в чате
         if (mysqli_query($this->link, $insert) && $this->add_party($data, $name_chat, $data)) {
             return true;

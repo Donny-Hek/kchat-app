@@ -36,7 +36,7 @@ class Controller_Home extends Controller
         if (isset($_POST['cancel'])) {
             unset($_POST);
         }
-        $this->view->generate('home_view.php',
+        $this->view->generate('home_view.php',"template_view.php",
              $this->pageData);
     }
 }

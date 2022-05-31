@@ -1,5 +1,4 @@
 <?php
-//require_once("application/models/model_home.php");
 
 class Model_Chat extends Model
 {
@@ -28,22 +27,19 @@ class Model_Chat extends Model
         foreach ($res as $num => $re) {
             $result[$re[0]] = $re[1];
         }
-//        echo var_dump($res);
         return $result;
     }
 
     public function get_messages($chat_id)
     {
-        $query = "select `text_m`, `chat_id`, `person_id`, `send_date` from `messages` where `chat_id`='$chat_id'";
+        $query = "select `text_m`, `chat_id`, `person_id`, `send_date` from `messages` where `chat_id`='$chat_id' order by `send_date`";
         $res = mysqli_query($this->link, $query);
         $pageData = array();
         if ($res && (mysqli_num_rows($res) > 0)) {
             while ($result = mysqli_fetch_assoc($res)) {
-//                echo var_dump($result);
                 array_push($pageData, $result);
             }
         }
-//        $result = mysqli_fetch_assoc($res);
         return $pageData;
     }
 
@@ -54,5 +50,25 @@ class Model_Chat extends Model
         $res = mysqli_query($this->link, $query);
         if ($res) return true;
         else return false;
+    }
+
+    public function add_party($user_login, $chat_id): bool
+    {
+        //получаем id того, кого добавляем
+        $query = "select `id` from `person` where `login`='$user_login'";
+        $result = mysqli_query($this->link, $query);
+        $user_id = mysqli_fetch_assoc($result);
+        if ($user_id == null) return false;
+        else {
+            $user_id = $user_id['id'];
+            //налаживаем связь в чате
+//            $query="select * from `party` where `person_id`='$user_id' and `chat_id`='$chat_id'";
+//            if (mysqli_query($this->link, $query)) return false;
+//            else {
+                $insert = "insert into `party` (`chat_id`,`person_id`) values ('$chat_id','$user_id')";
+                if (mysqli_query($this->link, $insert)) return true;
+                else return false;
+//            }
+        }
     }
 }
