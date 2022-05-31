@@ -25,12 +25,7 @@ if (isset($_POST['add']) && !isset($_POST['cancel'])): ?>
     //вывод списка чатов
     if (!empty($pageData ['chats'])) {
         foreach ($pageData ['chats'] as $item => $item_count) {
-            //action=" . $item_count . "
             echo "<a href=" . $item_count . ">" . $item . "</a><br>";
-//            echo "<form method='post'>
-//            <a href=".$item_count." >". $item." </a><br>
-//            <input type='text' name='chat_id' value=" . preg_replace("/[^0-9]/", '', $item_count) . " hidden/>
-//            <input type='submit' value='$item' hidden></form>";
         }
     }
     ?>
